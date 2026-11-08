@@ -103,8 +103,10 @@ def fig_footprints(bands, arrays) -> None:
     for name, width_m, depth_m in nm.PLATFORMS:
         h = max(width_m, depth_m) * 100.0
         ax.axhline(h, color=C_GRAY, lw=0.9, ls="--")
-        ax.text(len(n_orders) - 0.5, h + 0.6, f"{name} ({width_m*100:.0f} cm)",
-                fontsize=7.5, color=C_GRAY, ha="right")
+        ax.annotate(f"{name} ({width_m*100:.0f} × {depth_m*100:.0f} cm)",
+                    xy=(1.01, h), xycoords=("axes fraction", "data"),
+                    va="center", ha="left", fontsize=7.5, color="#555555")
+    ax.set_xlim(-0.6, len(n_orders) - 0.4)
     ax.set_xticks(x)
     ax.set_xticklabels([f"{n}×{n}" for n in n_orders])
     ax.set_xlabel("array order")
@@ -114,7 +116,7 @@ def fig_footprints(bands, arrays) -> None:
                  "(module = aperture + 2 x 0.2 λ₀)")
     ax.grid(True, axis="y", alpha=0.4)
     ax.legend(fontsize=8, loc="upper left")
-    fig.tight_layout()
+    fig.subplots_adjust(right=0.78, left=0.09, bottom=0.13, top=0.90)
     path = FIG / "fig02_footprints.png"
     fig.savefig(path)
     plt.close(fig)
