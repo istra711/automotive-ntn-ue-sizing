@@ -95,6 +95,8 @@ def build(lang: str) -> Path:
     r.p(f"RO4003C · h = {N(nm.BANDS[0].h_mm, 2)} / "
         f"{N(nm.BANDS[1].h_mm, 2)} mm", style="CoverMeta")
     r.p(date.today().isoformat(), style="CoverMeta")
+    r.p("© 2026 Michael T. — all rights reserved; reuse requires written permission",
+        style="CoverMeta")
 
     r.start_main()
     r.toc()
